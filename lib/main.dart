@@ -34,29 +34,6 @@ class _SampleState extends State<Sample> {
 
   @override
   Widget build(BuildContext context) {
-    var pos = positionn ? Container(
-      width: 100.0,
-      height: 50.0,
-      child: DragTarget(
-        builder: (context, List<int> candidateData, rejectedData) {},
-        onWillAccept: (data) {
-          return true;
-        },
-        onAccept: (data) {
-          if (data == 1) {
-            print("True");
-          }
-        },
-      ),
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        border: Border.all(
-          color: const Color(0xFF1a0d71),
-          width: 2,
-        ),
-      ),
-    ) : new Container();
-
     config();
     return new Scaffold(
       body: Container(
@@ -125,7 +102,11 @@ class _SampleState extends State<Sample> {
                               height: 50.0,
                             ),
                             onDragCompleted: () {
-
+                                setState(() {
+                                  switch(index){
+                                    case 0:
+                                  }
+                                });
                             },
                             onDraggableCanceled: (Velocity velocity,
                                 Offset offset) {
@@ -163,7 +144,7 @@ class _SampleState extends State<Sample> {
                 ),
               ),
             ),
-             Flexible(
+            Flexible(
               child: new Container(
                 width: 220.0,
                 child: new GridView.count(
@@ -175,13 +156,73 @@ class _SampleState extends State<Sample> {
                   children: new List<Widget>.generate(8, (index) {
                     return Container(
                       child: new GridTile(
-                        child: pos,
+                          child: Container(
+                            width: 100.0,
+                            height: 50.0,
+                            child: DragTarget(
+                              builder: (context, List<int> candidateData,
+                                  rejectedData) {},
+                              onWillAccept: (data) {
+                                return true;
+                              },
+                              onAccept: (data) {
+                                switch (data) {
+                                  case 0:
+                                    print("Flutter " + data.toString() +
+                                        " in Box " + index.toString());
+                                    break;
+                                  case 1:
+                                    print("Flutter " + data.toString() +
+                                        " in Box " + index.toString());
+                                    break;
+                                  case 2:
+                                    print("Flutter " + data.toString() +
+                                        " in Box " + index.toString());
+                                    break;
+                                  case 3:
+                                    print("Flutter " + data.toString() +
+                                        " in Box " + index.toString());
+                                    break;
+                                  case 4:
+                                    print("Flutter " + data.toString() +
+                                        " in Box " + index.toString());
+                                    break;
+                                  case 5:
+                                    print("Flutter " + data.toString() +
+                                        " in Box " + index.toString());
+                                    break;
+                                  case 6:
+                                    print("Flutter " + data.toString() +
+                                        " in Box " + index.toString());
+                                    break;
+                                  case 7:
+                                    print("Flutter " + data.toString() +
+                                        " in Box " + index.toString());
+                                    break;
+                                }
+                              },
+                            ),
+                            decoration: new BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: const Color(0xFF1a0d71),
+                                width: 2,
+                              ),
+                            ),
+                          )
                       ),
                     );
                   }),
                 ),
               ),
             ),
+            /* Flexible(
+              child: new Container(
+                child: new ListView.custom(
+                    semanticChildCount: 2,
+                    childrenDelegate: SliverChildBuilderDelegate(builder)),
+              ),
+            ),*/
           ],
         ),
       ),
