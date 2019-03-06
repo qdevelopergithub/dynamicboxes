@@ -102,11 +102,11 @@ class _SampleState extends State<Sample> {
                               height: 50.0,
                             ),
                             onDragCompleted: () {
-                                setState(() {
-                                  switch(index){
-                                    case 0:
-                                  }
-                                });
+                              setState(() {
+                                switch (index) {
+                                  case 0:
+                                }
+                              });
                             },
                             onDraggableCanceled: (Velocity velocity,
                                 Offset offset) {
@@ -216,13 +216,65 @@ class _SampleState extends State<Sample> {
                 ),
               ),
             ),
-            /* Flexible(
+           /* Flexible(
               child: new Container(
                 child: new ListView.custom(
                     semanticChildCount: 2,
-                    childrenDelegate: SliverChildBuilderDelegate(builder)),
+                    childrenDelegate: SliverChildListDelegate(children)),
               ),
             ),*/
+            /* Flexible(
+              child: ListView(
+                children: <Widget>[
+                  Text("Hello 1"),
+                  Text("Hello 2"),
+                  Text("Hello 3"),
+                  Text("Hello 3"),
+                  Text("Hello 3"),
+                  Text("Hello 3"),
+                  Text("Hello 3"),
+                  Text("Hello 3"),
+                  Text("Hello 3"),
+                ],
+              ),
+            ),*/
+            Flexible(
+              child: ListView.builder(
+                itemBuilder: (context, position) {
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        position.toString(), style: TextStyle(fontSize: 22.0),),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Flexible(
+              child: ListView.separated(
+                itemBuilder: (context, position) {
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        position.toString(), style: TextStyle(fontSize: 22.0),),
+                    ),
+                  );
+                },
+                separatorBuilder: (context, position) {
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text("Separator builder " +
+                          position.toString(),
+                        style: TextStyle(fontSize: 22.0),),
+                    ),
+                  );
+                },
+                itemCount: 100,
+              ),
+            ),
           ],
         ),
       ),
@@ -234,30 +286,3 @@ class _SampleState extends State<Sample> {
     SystemChrome.setEnabledSystemUIOverlays([]);
   }
 }
-
-
-/* new GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 30.0,
-              padding: EdgeInsets.all(20.0),
-              mainAxisSpacing: 30.0,
-             // childAspectRatio: (itemWidth / itemHeight),
-              controller: new ScrollController(keepScrollOffset: false),
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              children: widgetList.map((String value) {
-                return new Container(
-                  height: 350.0,
-                  color: Colors.green,
-                  margin: new EdgeInsets.all(1.0),
-                  child: new Center(
-                    child: new Text(
-                      value,
-                      style: new TextStyle(
-                        fontSize: 50.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                );
-              }).toList(),)*/
